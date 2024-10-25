@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import SixMonthCourses from './screens/SixMonthCourses';
+import SixWeekCourses from './screens/SixWeekCourses';
+import CourseDetails from './screens/CourseDetails';
+import FeesCalculator from './screens/FeesCalculator';
+import ContactDetails from './screens/ContactDetails';
+import { RootStackParamList } from './types';  
+
+const Stack = createStackNavigator<RootStackParamList>(); 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="SixMonthCourses" component={SixMonthCourses} />
+        <Stack.Screen name="SixWeekCourses" component={SixWeekCourses} />
+        <Stack.Screen name="CourseDetails" component={CourseDetails} />
+        <Stack.Screen name="FeesCalculator" component={FeesCalculator} />
+        <Stack.Screen name="ContactDetails" component={ContactDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
